@@ -8,9 +8,12 @@
   position: fixed;
   bottom: 30px;
   left: 20px;
-  z-index: 9999;
+  z-index: 10060;
   font-family: Arial, Verdana, sans-serif;
   pointer-events: none;
+  overflow: visible;
+  width: auto;
+  height: auto;
 }
 
 .a11y-widget-trigger {
@@ -49,9 +52,12 @@
   position: absolute;
   bottom: calc(100% + 12px);
   left: 0;
-  width: min(320px, calc(100% - 40px));
+  width: min(320px, calc(100vw - 40px));
+  min-width: 260px;
+  max-width: calc(100vw - 24px);
   max-height: min(70vh, 520px);
   overflow-y: auto;
+  overflow-x: hidden;
   background: #fff;
   border: 1px solid #d8d0c4;
   border-radius: 10px;
@@ -409,7 +415,8 @@ html.a11y-dark-mode .a11y-widget-action svg {
   }
 
   .a11y-widget-panel {
-    width: calc(100% - 32px);
+    width: min(320px, calc(100vw - 32px));
+    min-width: 0;
     max-height: 65vh;
   }
 }

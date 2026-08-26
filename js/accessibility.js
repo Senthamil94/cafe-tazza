@@ -172,7 +172,7 @@
         '<i class="fas fa-wheelchair" aria-hidden="true"></i>' +
       '</button>';
 
-    document.documentElement.appendChild(container);
+    document.body.appendChild(container);
     widgetRoot = container;
 
     panel = document.getElementById('a11yPanel');
