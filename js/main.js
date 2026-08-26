@@ -4,6 +4,7 @@ var $=function(s,c){return (c||document).querySelector(s)};
 var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
 var U='https://cafetazza.com/wp-content/uploads/';
 var ORDER='https://order.boons.io/site/cafe-tazza/115/y';
+var CATER='https://order.boons.io/site/catering/cafe-tazza/115/y';
 var RM=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ============================================================
@@ -16,7 +17,7 @@ var THALI=[
  {t:'Dosa &amp; idli',s:'South Indian',img:U+'2025/12/X1A6135-scaled-e1766937468254.jpg',url:'https://cafetazza.com/south-indian-restaurant-dublin/'},
  {t:'Curries &amp; naan',s:'North Indian',img:U+'2025/12/X1A6244-scaled-e1766250596483.jpg',url:'https://cafetazza.com/family-restaurant-dublin/'},
  {t:'Sweets &amp; mithai',s:'Festival &amp; gifting',img:U+'2025/12/X1A6299-scaled.jpg',url:'https://cafetazza.com/indian-sweets-dublin/'},
- {t:'Catering',s:'Parties &amp; events',img:U+'2025/12/X1A6084-scaled.jpg',url:'https://cafetazza.com/indian-catering-dublin/'},
+ {t:'Catering',s:'Parties &amp; events',img:U+'2025/12/X1A6084-scaled.jpg',url:CATER},
  {t:'Delivery',s:'To your door',img:U+'2026/06/indian-food-delivery-dublin.jpg',url:'https://order.boons.io/site/cafe-tazza/115/y'}
 ];
 
@@ -267,17 +268,42 @@ function onScroll(){
 }
 window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
+function pinNavChrome(){
+  var probe=document.createElement('div');
+  probe.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;visibility:hidden;pointer-events:none';
+  document.body.appendChild(probe);
+  var offset=Math.max(0,Math.round(-probe.getBoundingClientRect().top));
+  document.body.removeChild(probe);
+  var top=offset+'px',h=window.innerHeight+'px';
+  [ $('#drawer'), $('#scrim') ].forEach(function(el){
+    if(!el) return;
+    el.style.top=top;
+    el.style.height=h;
+    el.style.bottom='auto';
+  });
+}
+function unpinNavChrome(){
+  [ $('#drawer'), $('#scrim') ].forEach(function(el){
+    if(!el) return;
+    el.style.top='';
+    el.style.height='';
+    el.style.bottom='';
+  });
+}
 function openDrawer(){
+  pinNavChrome();
+  document.documentElement.classList.add('nav-open');
   document.body.classList.add('nav-open');
-  if(scrim) scrim.hidden=false;
   if(burger) burger.setAttribute('aria-expanded','true');
 }
 function closeDrawer(){
+  document.documentElement.classList.remove('nav-open');
   document.body.classList.remove('nav-open');
-  if(scrim) scrim.hidden=true;
+  unpinNavChrome();
   if(burger) burger.setAttribute('aria-expanded','false');
 }
-if(burger) burger.addEventListener('click',function(){
+if(burger) burger.addEventListener('click',function(e){
+  e.stopPropagation();
   document.body.classList.contains('nav-open')?closeDrawer():openDrawer();
 });
 var drawerClose=$('#drawerClose');
@@ -323,6 +349,8 @@ if('IntersectionObserver' in window && spySecs.length){
    ============================================================ */
 (function(){
   var stage=$('#thali'),platter=$('#platter'),hub=$('#hub'),step=360/THALI.length,idx=0;
+  var coarse=window.matchMedia('(hover:none),(pointer:coarse)').matches;
+  var down=false,moved=false,startA=0,startIdx=0,lastTouch=0,hoverLock=false,timer=null;
   THALI.forEach(function(c,i){
     var a=document.createElement('a');
     a.className='katori'; a.href=c.url; a.setAttribute('aria-label',c.t.replace(/&amp;/g,'&'));
@@ -330,7 +358,12 @@ if('IntersectionObserver' in window && spySecs.length){
     var ang=i*step, rad=(ang-90)*Math.PI/180, R=154;
     a.style.transform='translate('+(Math.cos(rad)*R)+'%,'+(Math.sin(rad)*R)+'%)';
     a.dataset.i=i;
-    a.addEventListener('mouseenter',function(){go(i,true)});
+    if(!coarse){
+      a.addEventListener('mouseenter',function(){
+        if(down||hoverLock) return;
+        go(i,true);
+      });
+    }
     a.addEventListener('focus',function(){go(i,true)});
     platter.appendChild(a);
   });
@@ -346,43 +379,64 @@ if('IntersectionObserver' in window && spySecs.length){
   }
   function go(i,manual){
     idx=(i%THALI.length+THALI.length)%THALI.length;
+    hoverLock=true;
     platter.style.transform='rotate('+(-idx*step)+'deg)';
     pods.forEach(function(p,k){
       var ang=k*step,rad=(ang-90)*Math.PI/180,R=154;
       p.style.transform='translate('+(Math.cos(rad)*R)+'%,'+(Math.sin(rad)*R)+'%) rotate('+(idx*step)+'deg)';
     });
     render();
+    clearTimeout(window.__tzHover);
+    window.__tzHover=setTimeout(function(){hoverLock=false}, RM?0:1100);
     if(manual) rest();
   }
-  var timer=null;
-  function auto(){ if(RM) return; timer=setInterval(function(){go(idx+1)},3800) }
-  function rest(){ clearInterval(timer); clearTimeout(window.__tz); window.__tz=setTimeout(auto,7000) }
+  function auto(){ if(RM) return; clearInterval(timer); timer=setInterval(function(){go(idx+1)},5000) }
+  function rest(){ clearInterval(timer); clearTimeout(window.__tz); window.__tz=setTimeout(auto,8000) }
   stage.addEventListener('mouseenter',function(){clearInterval(timer)});
   stage.addEventListener('mouseleave',rest);
 
-  /* drag to rotate */
-  var down=false,startA=0,startIdx=0;
-  function angleOf(e){
-    var r=stage.getBoundingClientRect(),x=(e.touches?e.touches[0].clientX:e.clientX)-(r.left+r.width/2),
-        y=(e.touches?e.touches[0].clientY:e.clientY)-(r.top+r.height/2);
-    return Math.atan2(y,x)*180/Math.PI;
+  /* drag to rotate — taps must not skip extra bowls */
+  function pt(e){
+    if(e.changedTouches&&e.changedTouches[0]) return {x:e.changedTouches[0].clientX,y:e.changedTouches[0].clientY};
+    if(e.touches&&e.touches[0]) return {x:e.touches[0].clientX,y:e.touches[0].clientY};
+    if(typeof e.clientX==='number') return {x:e.clientX,y:e.clientY};
+    return null;
   }
-  var moved=false;
-  function dstart(e){ down=true; moved=false; startA=angleOf(e); startIdx=idx; platter.classList.add('drag'); clearInterval(timer) }
+  function angleOf(p){
+    var r=stage.getBoundingClientRect();
+    return Math.atan2(p.y-(r.top+r.height/2), p.x-(r.left+r.width/2))*180/Math.PI;
+  }
+  function dstart(e){
+    if(e.type==='mousedown' && Date.now()-lastTouch<800) return;
+    if(e.type==='touchstart') lastTouch=Date.now();
+    var p=pt(e); if(!p) return;
+    down=true; moved=false; startA=angleOf(p); startIdx=idx;
+    platter.classList.add('drag'); clearInterval(timer);
+  }
   function dmove(e){
-    if(!down)return;
-    var d=angleOf(e)-startA;
-    if(Math.abs(d)>4) moved=true;
-    platter.style.transform='rotate('+(-startIdx*step+d)+'deg)';
+    if(!down) return;
+    var p=pt(e); if(!p) return;
+    var d=angleOf(p)-startA;
+    if(Math.abs(d)>10) moved=true;
+    if(moved) platter.style.transform='rotate('+(-startIdx*step+d)+'deg)';
   }
   function dend(e){
-    if(!down)return; down=false; platter.classList.remove('drag');
-    var d=angleOf(e.changedTouches?{clientX:e.changedTouches[0].clientX,clientY:e.changedTouches[0].clientY}:e)-startA;
-    go(Math.round(startIdx-d/step),true);
+    if(!down) return;
+    down=false; platter.classList.remove('drag');
+    var p=pt(e);
+    var d=p?angleOf(p)-startA:0;
+    if(moved && Math.abs(d)>=step*0.28){
+      go(Math.round(startIdx-d/step),true);
+    } else if(moved){
+      go(startIdx,true);
+    } else {
+      rest();
+    }
   }
   platter.addEventListener('click',function(e){ if(moved){e.preventDefault();e.stopPropagation();moved=false} },true);
   stage.addEventListener('mousedown',dstart); window.addEventListener('mousemove',dmove); window.addEventListener('mouseup',dend);
-  stage.addEventListener('touchstart',dstart,{passive:true}); stage.addEventListener('touchmove',dmove,{passive:true}); stage.addEventListener('touchend',dend);
+  stage.addEventListener('touchstart',dstart,{passive:true}); stage.addEventListener('touchmove',dmove,{passive:true});
+  stage.addEventListener('touchend',dend); stage.addEventListener('touchcancel',dend);
 
   stage.setAttribute('tabindex','0');
   stage.addEventListener('keydown',function(e){
