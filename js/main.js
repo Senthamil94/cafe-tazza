@@ -15,14 +15,14 @@ var RM=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
    1. DATA
    ============================================================ */
 var THALI=[
- {t:'Eggless cakes',s:'Baked this morning',img:U+'2025/12/X1A6251-scaled.jpg',url:'indian-bakery-eggless-cakes-dublin'},
- {t:'Birthday cakes',s:'Custom &amp; same-day',img:U+'2026/06/birthday-custom-cakes.jpg',url:'birthday-cakes-dublin'},
- {t:'Chaat &amp; street food',s:'Made to order',img:U+'2025/12/image-19.jpg',url:'indian-chaat-dublin'},
- {t:'Dosa &amp; idli',s:'South Indian',img:U+'2025/12/X1A6135-scaled-e1766937468254.jpg',url:'south-indian-restaurant-dublin'},
- {t:'Curries &amp; naan',s:'North Indian',img:U+'2025/12/X1A6244-scaled-e1766250596483.jpg',url:'indian-restaurant-dublin-ca#north'},
- {t:'Sweets &amp; mithai',s:'Festival &amp; gifting',img:U+'2025/12/X1A6299-scaled.jpg',url:'indian-sweets-dublin'},
- {t:'Catering',s:'Parties &amp; events',img:U+'2025/12/X1A6084-scaled.jpg',url:'indian-catering-dublin'},
- {t:'Delivery',s:'To your door',img:U+'2026/06/indian-food-delivery-dublin.jpg',url:'order-indian-food-dublin'}
+ {t:'Eggless cakes',s:'Baked this morning',img:U+'2025/12/X1A6251-scaled.jpg',url:'indian-bakery-eggless-cakes-dublin.html'},
+ {t:'Birthday cakes',s:'Custom &amp; same-day',img:U+'2026/06/birthday-custom-cakes.jpg',url:'birthday-cakes-dublin.html'},
+ {t:'Chaat &amp; street food',s:'Made to order',img:U+'2025/12/image-19.jpg',url:'indian-chaat-dublin.html'},
+ {t:'Dosa &amp; idli',s:'South Indian',img:U+'2025/12/X1A6135-scaled-e1766937468254.jpg',url:'south-indian-restaurant-dublin.html'},
+ {t:'Curries &amp; naan',s:'North Indian',img:U+'2025/12/X1A6244-scaled-e1766250596483.jpg',url:'indian-restaurant-dublin-ca.html#north'},
+ {t:'Sweets &amp; mithai',s:'Festival &amp; gifting',img:U+'2025/12/X1A6299-scaled.jpg',url:'indian-sweets-dublin.html'},
+ {t:'Catering',s:'Parties &amp; events',img:U+'2025/12/X1A6084-scaled.jpg',url:'indian-catering-dublin.html'},
+ {t:'Delivery',s:'To your door',img:U+'2026/06/indian-food-delivery-dublin.jpg',url:'order-indian-food-dublin.html'}
 ];
 
 var CATS=[
