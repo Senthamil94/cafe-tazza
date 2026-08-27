@@ -11,14 +11,14 @@ var RM=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
    1. DATA
    ============================================================ */
 var THALI=[
- {t:'Eggless cakes',s:'Baked this morning',img:U+'2025/12/X1A6251-scaled.jpg',url:'https://cafetazza.com/indian-bakery-eggless-cakes-dublin/'},
- {t:'Birthday cakes',s:'Custom &amp; same-day',img:U+'2026/06/birthday-custom-cakes.jpg',url:'https://cafetazza.com/birthday-cakes-dublin/'},
- {t:'Chaat &amp; street food',s:'Made to order',img:U+'2025/12/image-19.jpg',url:'https://cafetazza.com/indian-chaat-dublin/'},
- {t:'Dosa &amp; idli',s:'South Indian',img:U+'2025/12/X1A6135-scaled-e1766937468254.jpg',url:'https://cafetazza.com/south-indian-restaurant-dublin/'},
- {t:'Curries &amp; naan',s:'North Indian',img:U+'2025/12/X1A6244-scaled-e1766250596483.jpg',url:'https://cafetazza.com/family-restaurant-dublin/'},
- {t:'Sweets &amp; mithai',s:'Festival &amp; gifting',img:U+'2025/12/X1A6299-scaled.jpg',url:'https://cafetazza.com/indian-sweets-dublin/'},
- {t:'Catering',s:'Parties &amp; events',img:U+'2025/12/X1A6084-scaled.jpg',url:CATER},
- {t:'Delivery',s:'To your door',img:U+'2026/06/indian-food-delivery-dublin.jpg',url:'https://order.boons.io/site/cafe-tazza/115/y'}
+ {t:'Eggless cakes',s:'Baked this morning',img:U+'2025/12/X1A6251-scaled.jpg',url:'indian-bakery-eggless-cakes-dublin'},
+ {t:'Birthday cakes',s:'Custom &amp; same-day',img:U+'2026/06/birthday-custom-cakes.jpg',url:'birthday-cakes-dublin'},
+ {t:'Chaat &amp; street food',s:'Made to order',img:U+'2025/12/image-19.jpg',url:'indian-chaat-dublin'},
+ {t:'Dosa &amp; idli',s:'South Indian',img:U+'2025/12/X1A6135-scaled-e1766937468254.jpg',url:'south-indian-restaurant-dublin'},
+ {t:'Curries &amp; naan',s:'North Indian',img:U+'2025/12/X1A6244-scaled-e1766250596483.jpg',url:'indian-restaurant-dublin-ca#north'},
+ {t:'Sweets &amp; mithai',s:'Festival &amp; gifting',img:U+'2025/12/X1A6299-scaled.jpg',url:'indian-sweets-dublin'},
+ {t:'Catering',s:'Parties &amp; events',img:U+'2025/12/X1A6084-scaled.jpg',url:'indian-catering-dublin'},
+ {t:'Delivery',s:'To your door',img:U+'2026/06/indian-food-delivery-dublin.jpg',url:'order-indian-food-dublin'}
 ];
 
 var CATS=[
@@ -190,7 +190,8 @@ var SPOT=[
 function money(n){return '$'+n.toFixed(2)}
 var toastT;
 function toast(msg){
-  var t=$('#toast'); t.textContent=msg; t.classList.add('show');
+  var t=$('#toast'); if(!t) return;
+  t.textContent=msg; t.classList.add('show');
   clearTimeout(toastT); toastT=setTimeout(function(){t.classList.remove('show')},2400);
 }
 function copy(text,ok){
@@ -211,18 +212,21 @@ function copy(text,ok){
    ============================================================ */
 window.addEventListener('load',function(){
   setTimeout(function(){
-    $('#pre').classList.add('done');
+    var p=$('#pre'); if(p) p.classList.add('done');
     document.body.classList.remove('locked');
-    $('#h1').classList.add('in');
+    var h=$('#h1'); if(h) h.classList.add('in');
   }, RM?0:1500);
 });
 document.body.classList.add('locked');
-setTimeout(function(){var p=$('#pre'); if(p&&!p.classList.contains('done')){p.classList.add('done');document.body.classList.remove('locked');$('#h1').classList.add('in')}},4200);
+setTimeout(function(){
+  var p=$('#pre'); if(p&&!p.classList.contains('done')){p.classList.add('done');document.body.classList.remove('locked')}
+  var h=$('#h1'); if(h) h.classList.add('in');
+},4200);
 
 /* ============================================================
    4. CURSOR
    ============================================================ */
-if(window.matchMedia('(hover:hover) and (pointer:fine)').matches&&!RM){
+if(window.matchMedia('(hover:hover) and (pointer:fine)').matches&&!RM && $('#cur') && $('#cur-d')){
   var cur=$('#cur'),curD=$('#cur-d'),cx=0,cy=0,dx=0,dy=0;
   document.addEventListener('mousemove',function(e){
     if(!document.body.classList.contains('mouse'))document.body.classList.add('mouse');
@@ -348,7 +352,8 @@ if('IntersectionObserver' in window && spySecs.length){
    7. THE TAZZA THALI
    ============================================================ */
 (function(){
-  var stage=$('#thali'),platter=$('#platter'),hub=$('#hub'),step=360/THALI.length,idx=0;
+  var stage=$('#thali'),platter=$('#platter'),hub=$('#hub'); if(!stage||!platter||!hub) return;
+  var step=360/THALI.length,idx=0;
   var coarse=window.matchMedia('(hover:none),(pointer:coarse)').matches;
   var down=false,moved=false,startA=0,startIdx=0,lastTouch=0,hoverLock=false,timer=null;
   THALI.forEach(function(c,i){
@@ -451,9 +456,10 @@ if('IntersectionObserver' in window && spySecs.length){
    8. MARQUEE + HERO WORD FLIP
    ============================================================ */
 (function(){
+  var marq=$('#marq'); if(!marq) return;
   var words=['Eggless cakes','Pani poori','Masala dosa','Motichoor laddoo','Pav bhaaji','Butter chicken','Fresh jalebi','Kids cone dosa','Chole bhature','Malabar parantha'];
   var run=words.map(function(w){return '<span>'+w+' <i></i></span>'}).join('');
-  $('#marq').innerHTML=run+run;
+  marq.innerHTML=run+run;
 })();
 (function(){
   var f=$$('#h1 .flip>span'); if(f.length<2||RM) return; var i=0;
@@ -478,10 +484,30 @@ var cio=new IntersectionObserver(function(es){
 $$('[data-count]').forEach(function(el){cio.observe(el)});
 
 /* ============================================================
+   9b. SOUTH INDIAN TASTING SWITCHER
+   ============================================================ */
+(function(){
+  var box=$('#siTaste'); if(!box) return;
+  var imgs=$$('.si-taste-stage img',box),tabs=$$('.si-tab',box);
+  var name=$('#siTasteName'),price=$('#siTastePrice');
+  function pick(i){
+    tabs.forEach(function(t,k){
+      t.classList.toggle('on',k===i);
+      t.setAttribute('aria-selected',k===i?'true':'false');
+    });
+    imgs.forEach(function(m,k){m.classList.toggle('on',k===i)});
+    if(name) name.textContent=tabs[i].dataset.name;
+    if(price) price.textContent=tabs[i].dataset.p;
+  }
+  tabs.forEach(function(t,i){t.addEventListener('click',function(){pick(i)})});
+})();
+
+/* ============================================================
    10. SIGNATURE SPOTLIGHT
    ============================================================ */
 (function(){
   var list=$('#spotList'),imgs=$$('#spotImg img'),price=$('#spotPrice'),cur=0;
+  if(!list) return;
   SPOT.forEach(function(d,i){
     var b=document.createElement('button');
     b.className='spot-row'+(i===0?' on':'');
@@ -505,6 +531,7 @@ $$('[data-count]').forEach(function(el){cio.observe(el)});
 var state={cat:'all',q:'',diet:null,sort:null};
 (function(){
   var tabs=$('#tabs'),grid=$('#grid');
+  if(!tabs||!grid) return;
   CATS.forEach(function(c){
     var n=c.k==='all'?M.length:M.filter(function(m){return m.c===c.k}).length;
     var b=document.createElement('button');
@@ -580,6 +607,7 @@ $$('[data-jump]').forEach(function(a){
    ============================================================ */
 (function(){
   var cake=$('#cakeArt'),msgEl=$('#cakeMsg'),priceEl=$('#cakePrice'),input=$('#msgIn');
+  if(!cake||!priceEl||!input) return;
   var st={lb:2,flav:'Black forest',col:'#6B3B2A',fx:0,occ:'Birthday',addons:[],addx:0};
 
   function build(){
@@ -623,7 +651,8 @@ $$('[data-jump]').forEach(function(a){
     build();
   })});
   input.addEventListener('input',build);
-  $('#copyCake').addEventListener('click',function(){
+  var copyBtn=$('#copyCake');
+  if(copyBtn) copyBtn.addEventListener('click',function(){
     var txt='Cafe Tazza — cake request\nSize: '+st.lb+' lb\nFlavour: '+st.flav+' (eggless)\nOccasion: '+st.occ+
       '\nMessage on top: "'+(input.value||'—')+'"\nAdd-ons: '+(st.addons.length?st.addons.join(', '):'none')+
       '\nEstimated: '+priceEl.textContent+' (to be confirmed)\nCall 925-560-9830';
@@ -637,6 +666,7 @@ $$('[data-jump]').forEach(function(a){
    ============================================================ */
 (function(){
   var slider=$('#guests'),count=$('#gCount'),out=$('#catOut'),pkg={v:'Classic buffet',x:23};
+  if(!slider||!count||!out) return;
   function calc(){
     var g=+slider.value; count.textContent=g;
     var per=pkg.x, food=g*per;
@@ -657,7 +687,8 @@ $$('[data-jump]').forEach(function(a){
     $$('[data-group="pkg"] .opt').forEach(function(x){x.classList.remove('on')}); b.classList.add('on');
     pkg={v:b.dataset.v,x:+b.dataset.x}; calc();
   })});
-  $('#copyCat').addEventListener('click',function(){copy(out.dataset.txt,'Estimate copied')});
+  var copyCat=$('#copyCat');
+  if(copyCat) copyCat.addEventListener('click',function(){copy(out.dataset.txt,'Estimate copied')});
   calc();
 })();
 
@@ -665,17 +696,19 @@ $$('[data-jump]').forEach(function(a){
    15. GALLERY + LIGHTBOX
    ============================================================ */
 (function(){
-  $('#gal').innerHTML=GAL.map(function(g,i){
+  var gal=$('#gal'); if(!gal) return;
+  gal.innerHTML=GAL.map(function(g,i){
     return '<figure data-i="'+i+'"><img src="'+g.i+'" alt="'+g.c+' at Cafe Tazza Dublin CA" loading="lazy"><figcaption>'+g.c+'</figcaption></figure>';
   }).join('');
   var lb=$('#lb'),img=$('#lbI'),cap=$('#lbC'),cur=0;
+  if(!lb||!img) return;
   function show(i){
     cur=(i%GAL.length+GAL.length)%GAL.length;
     img.src=GAL[cur].i; img.alt=GAL[cur].c; cap.textContent=GAL[cur].c;
   }
   function open(i){show(i);lb.classList.add('open');document.body.classList.add('locked')}
   function close(){lb.classList.remove('open');document.body.classList.remove('locked')}
-  $('#gal').addEventListener('click',function(e){
+  gal.addEventListener('click',function(e){
     var f=e.target.closest('figure'); if(f)open(+f.dataset.i);
   });
   $('#lbX').addEventListener('click',close);
@@ -692,7 +725,8 @@ $$('[data-jump]').forEach(function(a){
    16. REVIEWS
    ============================================================ */
 (function(){
-  var t=$('#revT'),n=$$('.rev',t).length,nav=$('#revNav'),i=0,timer;
+  var t=$('#revT'),nav=$('#revNav'); if(!t||!nav) return;
+  var n=$$('.rev',t).length,i=0,timer;
   for(var k=0;k<n;k++){
     var d=document.createElement('button');
     d.className='rev-dot'+(k===0?' on':''); d.setAttribute('aria-label','Review '+(k+1));
@@ -703,8 +737,11 @@ $$('[data-jump]').forEach(function(a){
   function go(k){i=(k%n+n)%n;t.style.transform='translateX(-'+(i*100)+'%)';dots.forEach(function(d,j){d.classList.toggle('on',j===i)})}
   function start(){if(!RM)timer=setInterval(function(){go(i+1)},5600)}
   function reset(){clearInterval(timer);start()}
-  $('#revs').addEventListener('mouseenter',function(){clearInterval(timer)});
-  $('#revs').addEventListener('mouseleave',start);
+  var revs=$('#revs');
+  if(revs){
+    revs.addEventListener('mouseenter',function(){clearInterval(timer)});
+    revs.addEventListener('mouseleave',start);
+  }
   start();
 })();
 
@@ -747,12 +784,15 @@ function pt(){
       openNow.textContent=t.h<today.o?'Opens '+fmt(today.o):'Closed · opens 10am';
     }
   }
-  $('#hoursNow').textContent=open?'Open now — until '+fmt(today.c)+' today':(t.h<today.o?'Opens today at '+fmt(today.o):'Closed now — back at 10am tomorrow');
-  $('#hours').innerHTML=HOURS.map(function(h,i){
+  var hoursNow=$('#hoursNow');
+  if(hoursNow) hoursNow.textContent=open?'Open now — until '+fmt(today.c)+' today':(t.h<today.o?'Opens today at '+fmt(today.o):'Closed now — back at 10am tomorrow');
+  var hoursEl=$('#hours');
+  if(hoursEl) hoursEl.innerHTML=HOURS.map(function(h,i){
     return '<div class="hr'+(i===t.day?' today':'')+'"><span class="d">'+h.d+'</span><span class="t">'+fmt(h.o)+' &ndash; '+fmt(h.c)+'</span></div>';
   }).join('');
 
-  $('#clockLine').innerHTML='Dublin, CA &middot; '+t.label+' local';
+  var clockLine=$('#clockLine');
+  if(clockLine) clockLine.innerHTML='Dublin, CA &middot; '+t.label+' local';
   var slots=[
     {to:10, t:'The griddle is warming up', p:'We open at 10am. Perfect time to plan a breakfast of steamed idli, medhu vada and a ghee roast dosa.', c:'south'},
     {to:11.5,t:'Breakfast is on', p:'Idli, medhu vada and ghee roast dosa are coming off the griddle right now. Chai to go with it.', c:'south'},
@@ -763,22 +803,26 @@ function pt(){
   ];
   var slot=slots.filter(function(s){return t.h<s.to})[0];
   if(!open&&t.h>=today.c) slot=slots[slots.length-1];
-  $('#nowTitle').textContent=slot.t; $('#nowText').textContent=slot.p;
-  $('#nowCta').addEventListener('click',function(e){
+  var nowTitle=$('#nowTitle'),nowText=$('#nowText'),nowCta=$('#nowCta');
+  if(nowTitle) nowTitle.textContent=slot.t;
+  if(nowText) nowText.textContent=slot.p;
+  if(nowCta) nowCta.addEventListener('click',function(e){
     e.preventDefault();
     var tab=$('.tab[data-k="'+slot.c+'"]'); if(tab)tab.click();
-    $('#menuSec').scrollIntoView({behavior:RM?'auto':'smooth'});
+    var menu=$('#menuSec'); if(menu) menu.scrollIntoView({behavior:RM?'auto':'smooth'});
   });
 })();
 
 /* ============================================================
    19. NEWSLETTER (no backend — connect your own)
    ============================================================ */
-$('#sub').addEventListener('click',function(){
-  var v=$('#mail').value.trim(),m=$('#subMsg');
-  if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(v)){ m.textContent='That email does not look right — check it and try again.'; return }
-  m.textContent='Thanks. Connect this form to your mailing list to start collecting.';
-  $('#mail').value='';
+var subBtn=$('#sub');
+if(subBtn) subBtn.addEventListener('click',function(){
+  var mail=$('#mail'),m=$('#subMsg'); if(!mail) return;
+  var v=mail.value.trim();
+  if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(v)){ if(m) m.textContent='That email does not look right — check it and try again.'; return }
+  if(m) m.textContent='Thanks. Connect this form to your mailing list to start collecting.';
+  mail.value='';
 });
 
 /* ============================================================
@@ -801,7 +845,7 @@ $$('a[href^="#"]').forEach(function(a){
     window.scrollTo({top:y,behavior:RM?'auto':'smooth'});
   });
 });
-$('#yr').textContent=new Date().getFullYear();
+var yr=$('#yr'); if(yr) yr.textContent=new Date().getFullYear();
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape'){
     if(e.defaultPrevented) return;

@@ -38,12 +38,13 @@ html{
   scroll-behavior:smooth;-webkit-text-size-adjust:100%;
   max-width:100%;
   overflow-x:hidden;
-  overflow-x:clip;
 }
 body{
   margin:0;background:var(--milk);color:var(--ink);
   font-family:var(--body);font-size:17px;line-height:1.62;
-  font-weight:400;max-width:100%;
+  font-weight:400;max-width:100%;width:100%;
+  overflow-x:hidden;
+  overflow-wrap:anywhere;
   -webkit-font-smoothing:antialiased;
 }
 body.locked{overflow:hidden}
@@ -75,10 +76,10 @@ p{margin:0 0 1em}
 .eyebrow.center{justify-content:center}
 .eyebrow.center::after{content:"";width:26px;height:1px;background:var(--gold);flex:none}
 
-.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad);min-width:0}
-#main,header,footer,.topbar,.marq{overflow-x:clip;max-width:100%}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad);min-width:0;width:100%}
+#main,footer,.topbar,.marq,.page-hero,.si-hero,.ir-banner,.od-stage,.ct-hero,.fm-hero,.bc-photos,.bake-media{overflow-x:clip;max-width:100%}
 /* grid children default to min-width:auto, which lets wide content push the page */
-.studio>*,.visit>*,.story>*,.band>*,.ways>*,.hero-grid>*,.spot>*,.f-grid>*,.cake-wrap>*{min-width:0}
+.studio>*,.visit>*,.story>*,.band>*,.ways>*,.hero-grid>*,.spot>*,.f-grid>*,.cake-wrap>*,.bake-grid>*,.page-hero .hero-grid>*,.si-hero>*,.fm-hero>*,.ct-hero>*,.od-paths>*,.bc-invite>*{min-width:0}
 section{position:relative}
 .sec{padding-block:clamp(64px,9vw,132px)}
 .sec-head{max-width:760px;margin-bottom:clamp(34px,5vw,60px)}
@@ -197,7 +198,7 @@ h1 .flip{
 }
 h1 .flip>span{grid-area:1/1;opacity:0;transform:translateY(60%) rotate(4deg);transition:opacity .6s var(--ease),transform .6s var(--ease)}
 h1 .flip>span.on{opacity:1;transform:none}
-h1 em{font-style:normal;position:relative;white-space:nowrap}
+h1 em{font-style:normal;position:relative}
 h1 em svg{position:absolute;left:-2%;bottom:-.02em;width:104%;height:.32em;overflow:visible}
 h1 em svg path{fill:none;stroke:var(--gold);stroke-width:7;stroke-linecap:round;stroke-dasharray:520;stroke-dashoffset:520;animation:draw 1.5s var(--ease) 1.1s forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
@@ -685,3 +686,673 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .sw-pistachio{background:#A8C08A}
 .sw-choco-mousse{background:#5C3527}
 .sw-choco-sacher{background:#3B2118}
+.sw-red-velvet{background:#8B2E3A}
+.sw-rasmalai{background:#F4E4B8}
+.sw-oreo{background:#3A3A3A}
+.sw-ferrero{background:#7A4A28}
+.sw-fresh-fruit{background:#E07A5F}
+.sw-truffle{background:#3D2418}
+
+/* ============================================================
+   INNER PAGE — EGGLESS BAKERY
+   ============================================================ */
+.page-hero{
+  padding:22px 0 clamp(36px,6vw,70px);
+  overflow:hidden;position:relative;
+}
+.page-hero h1{font-size:clamp(2.35rem,5.4vw,4.55rem)}
+.crumbs{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.55em;
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-soft);margin-bottom:1.35rem;font-weight:500;
+}
+.crumbs a{color:var(--maroon);font-weight:600}
+.crumbs .sep{opacity:.4}
+.bake-media{position:relative;padding:8px 4px 28px 8px}
+.bake-media .stamp{top:0;left:0}
+.bake-media .m1{border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-l);aspect-ratio:4/5}
+.bake-media .m1 img{width:100%;height:100%;object-fit:cover}
+.bake-media .m2{
+  position:absolute;right:-3%;bottom:-6%;width:46%;
+  border-radius:var(--r-m);overflow:hidden;box-shadow:var(--shadow-l);
+  border:6px solid var(--milk);aspect-ratio:1;
+}
+.bake-media .m2 img{width:100%;height:100%;object-fit:cover}
+.bake-badge{
+  position:absolute;top:18px;right:18px;z-index:3;
+  background:var(--gold);color:var(--ink);border-radius:999px;
+  padding:.55rem 1rem;font-family:var(--mono);font-size:.62rem;
+  letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+  box-shadow:var(--shadow-m);
+}
+.bake-float{
+  position:absolute;left:-10px;bottom:18%;z-index:4;
+  background:var(--maroon);color:var(--milk);border-radius:var(--r-m);
+  padding:1rem 1.15rem;box-shadow:var(--shadow-l);max-width:160px;
+  transform:rotate(-4deg);
+}
+.bake-float b{display:block;font-family:var(--display);font-size:1.85rem;line-height:1;color:var(--gold)}
+.bake-float span{display:block;font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;margin-top:.35rem;opacity:.82}
+@media(max-width:520px){
+  .bake-float{left:8px;bottom:12%;padding:.75rem .85rem;max-width:130px}
+  .bake-float b{font-size:1.4rem}
+  .bake-media .m2{width:42%;right:-2%;bottom:-4%}
+}
+
+.bake-offers{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:680px){.bake-offers{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1060px){.bake-offers{grid-template-columns:repeat(4,1fr)}}
+
+.flav-cloud{
+  display:flex;flex-wrap:wrap;gap:10px;justify-content:center;
+}
+.flav-pill{
+  display:inline-flex;align-items:center;gap:.55em;
+  padding:.62rem 1.05rem;border-radius:999px;background:var(--milk);
+  box-shadow:inset 0 0 0 1.5px var(--line-strong);font-weight:700;font-size:.88rem;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s;
+}
+.flav-pill:hover{transform:translateY(-3px);box-shadow:var(--shadow-m);background:var(--cream)}
+.flav-pill .sw{width:14px;height:14px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(46,27,20,.18);flex:none}
+
+.why-list{display:grid;gap:12px;margin:1.6rem 0 0}
+.why-item{
+  display:grid;grid-template-columns:auto 1fr;gap:.9rem;align-items:start;
+  padding:1rem 1.1rem;background:var(--cream);border-radius:var(--r-m);
+}
+.why-item .ic{
+  width:42px;height:42px;border-radius:50%;background:var(--maroon);color:var(--gold);
+  display:grid;place-items:center;flex:none;
+}
+.why-item b{display:block;font-family:var(--display);font-size:1.2rem;line-height:1.1;margin-bottom:.2rem}
+.why-item p{margin:0;font-size:.9rem;color:var(--ink-soft)}
+
+.bake-mosaic{
+  display:grid;gap:12px;grid-template-columns:1.2fr .8fr;grid-template-rows:1fr 1fr;
+  min-height:420px;
+}
+.bake-mosaic figure{
+  margin:0;position:relative;overflow:hidden;border-radius:var(--r-l);box-shadow:var(--shadow-s);
+}
+.bake-mosaic figure:first-child{grid-row:1 / span 2}
+.bake-mosaic img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 1.1s var(--ease)}
+.bake-mosaic figure:hover img{transform:scale(1.07)}
+.bake-mosaic figcaption{
+  position:absolute;left:14px;bottom:14px;z-index:2;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink);background:rgba(255,247,238,.92);padding:.36em .72em;border-radius:999px;
+}
+.bake-mosaic figure::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(46,27,20,.28));pointer-events:none}
+@media(max-width:700px){
+  .bake-mosaic{grid-template-columns:1fr;grid-template-rows:none;min-height:0}
+  .bake-mosaic figure{aspect-ratio:4/3}
+  .bake-mosaic figure:first-child{grid-row:auto;aspect-ratio:4/5}
+}
+
+.cta-pill{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;
+  background:linear-gradient(135deg,var(--maroon),var(--maroon-deep));
+  color:var(--milk);border-radius:var(--r-xl);padding:clamp(22px,3.4vw,36px) clamp(22px,4vw,44px);
+  box-shadow:var(--shadow-l);
+}
+.cta-pill h3{color:var(--milk);font-size:clamp(1.6rem,3vw,2.2rem)}
+.cta-pill p{margin:.4rem 0 0;color:rgba(255,247,238,.78);max-width:48ch}
+.cta-pill .hero-cta{margin:0}
+
+.city-grid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:800px){.city-grid{grid-template-columns:repeat(4,1fr)}}
+.city-card{
+  text-align:center;padding:1.35rem 1rem;background:var(--cream);border-radius:var(--r-m);
+  box-shadow:var(--shadow-s);
+}
+.city-card b{display:block;font-family:var(--display);font-size:clamp(1.25rem,2vw,1.55rem);color:var(--maroon);line-height:1.05}
+.city-card span{display:block;margin-top:.4rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.way .pr{position:relative;z-index:2;font-family:var(--mono);font-size:.72rem;color:var(--gold);margin:.15rem 0 .65rem}
+
+/* ============================================================
+   SOUTH INDIAN PAGE — split hero, tasting switcher, menu board
+   ============================================================ */
+.si-hero{
+  display:grid;grid-template-columns:1fr;min-height:0;background:var(--cream);
+}
+@media(min-width:980px){
+  .si-hero{grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);min-height:min(86vh,740px)}
+}
+.si-hero-pic{position:relative;min-height:380px;overflow:hidden}
+.si-hero-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.si-hero-pic::after{
+  content:"";position:absolute;inset:auto 0 0 0;height:38%;
+  background:linear-gradient(to top,rgba(46,27,20,.35),transparent);pointer-events:none;
+}
+.si-hero-copy{
+  padding:clamp(28px,5vw,64px) var(--pad);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.si-hero-copy h1{font-size:clamp(2.2rem,5vw,4.1rem)}
+.si-metrics{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+  border-radius:var(--r-m);overflow:hidden;margin-top:2rem;
+}
+@media(min-width:560px){.si-metrics{grid-template-columns:repeat(4,1fr)}}
+.si-metrics div{background:var(--milk);padding:1rem .85rem;text-align:center}
+.si-metrics b{display:block;font-family:var(--display);font-size:clamp(1.5rem,2.6vw,2.1rem);color:var(--maroon);line-height:1}
+.si-metrics span{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+
+.si-taste{
+  display:grid;gap:clamp(22px,3vw,40px);grid-template-columns:1fr;align-items:stretch;
+}
+@media(min-width:900px){.si-taste{grid-template-columns:.9fr 1.1fr}}
+.si-taste-nav{display:flex;flex-direction:column;gap:6px}
+.si-tab{
+  text-align:left;padding:1rem 1.15rem;border-radius:var(--r-m);
+  box-shadow:inset 0 0 0 1.5px var(--line);background:var(--milk);
+  transition:background .35s var(--ease),color .35s,box-shadow .35s,transform .35s var(--ease);
+}
+.si-tab:hover{background:var(--cream)}
+.si-tab.on{background:var(--ink);color:var(--milk);box-shadow:none;transform:translateX(4px)}
+.si-tab em{display:block;font-family:var(--mono);font-style:normal;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:.25rem}
+.si-tab.on em{color:var(--gold)}
+.si-tab b{display:block;font-family:var(--display);font-weight:400;font-size:1.25rem;line-height:1.1}
+.si-tab span{display:block;margin-top:.28rem;font-size:.84rem;color:var(--ink-soft)}
+.si-tab.on span{color:rgba(255,247,238,.7)}
+.si-taste-stage{position:relative;border-radius:var(--r-xl);overflow:hidden;min-height:420px;background:var(--cream);box-shadow:var(--shadow-l)}
+.si-taste-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s var(--ease),transform 1.1s var(--ease);transform:scale(1.06)}
+.si-taste-stage img.on{opacity:1;transform:none}
+.si-taste-meta{
+  position:absolute;left:18px;right:18px;bottom:18px;z-index:2;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:12px;
+  color:var(--milk);
+}
+.si-taste-meta strong{font-family:var(--display);font-size:1.6rem;display:block;text-shadow:0 8px 24px rgba(0,0,0,.45)}
+.si-taste-meta i{font-style:normal;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.si-taste-meta .amt{background:var(--gold);color:var(--ink);border-radius:999px;padding:.55rem 1rem;font-family:var(--mono);font-weight:500;flex:none}
+
+.si-board{display:grid;gap:clamp(28px,4vw,52px);grid-template-columns:1fr}
+@media(min-width:860px){.si-board{grid-template-columns:1fr 1fr}}
+.si-col h3{margin-bottom:1rem;padding-bottom:.8rem;border-bottom:2px solid var(--maroon)}
+.si-line{
+  display:grid;grid-template-columns:1fr auto;gap:.4rem 1rem;align-items:baseline;
+  padding:.85rem 0;border-bottom:1px dashed var(--line);
+}
+.si-line .n{font-weight:700}
+.si-line .d{grid-column:1 / -1;font-size:.82rem;color:var(--ink-soft);margin:0}
+.si-line .p{font-family:var(--mono);font-size:.88rem;color:var(--maroon);white-space:nowrap}
+.si-line .tag{margin-left:.4em;vertical-align:middle}
+
+.si-kids{
+  display:grid;grid-template-columns:1fr;background:var(--ink);color:var(--milk);overflow:hidden;
+}
+@media(min-width:880px){.si-kids{grid-template-columns:.92fr 1.08fr;min-height:460px}}
+.si-kids-pic{position:relative;min-height:300px}
+.si-kids-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.si-kids-copy{padding:clamp(28px,4.4vw,58px);display:flex;flex-direction:column;justify-content:center}
+.si-kids-copy h2{color:var(--milk)}
+.si-kids-copy .lede{color:rgba(255,247,238,.72)}
+.si-kids-copy .eyebrow{color:var(--gold)}
+
+.si-break{display:grid;gap:18px;grid-template-columns:1fr}
+@media(min-width:760px){.si-break{grid-template-columns:repeat(3,1fr)}}
+.si-b{background:transparent}
+.si-b img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r-l);box-shadow:var(--shadow-m)}
+.si-b .num{font-family:var(--display);font-size:1.8rem;color:var(--gold);line-height:1;margin:.9rem 0 .25rem}
+.si-b h3{margin-bottom:.3rem}
+.si-b p{margin:0;font-size:.9rem;color:var(--ink-soft)}
+.si-b .p{font-family:var(--mono);color:var(--maroon);margin-top:.45rem}
+
+.si-note{
+  display:grid;gap:0;grid-template-columns:1fr;background:var(--cream);border-radius:var(--r-xl);overflow:hidden;
+}
+@media(min-width:800px){.si-note{grid-template-columns:1.1fr .9fr}}
+.si-note-t{padding:clamp(26px,4vw,48px)}
+.si-note-t h2{margin-bottom:.7rem}
+.si-note img{width:100%;height:100%;object-fit:cover;min-height:240px}
+
+.si-quotes{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:800px){.si-quotes{grid-template-columns:repeat(3,1fr)}}
+.si-quote{
+  background:var(--cream);border-radius:var(--r-l);padding:1.4rem 1.35rem;
+  display:flex;flex-direction:column;justify-content:space-between;min-height:220px;
+}
+.si-quote p{font-family:var(--display);font-size:1.15rem;line-height:1.25;margin:0 0 1.2rem}
+.si-quote b{display:block;font-size:.92rem}
+.si-quote span{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+
+.si-faq-grid{display:grid;gap:18px;grid-template-columns:1fr}
+@media(min-width:860px){.si-faq-grid{grid-template-columns:1fr 1fr;align-items:start}}
+.si-faq-grid .faq{margin:0;max-width:none}
+
+/* ============================================================
+   INDIAN RESTAURANT DUBLIN — banner + zigzag kitchens
+   ============================================================ */
+.ir-banner{
+  position:relative;min-height:min(78vh,680px);display:flex;align-items:flex-end;
+  overflow:hidden;
+}
+.ir-banner>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ir-banner::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(46,27,20,.15) 0%,rgba(46,27,20,.55) 100%);
+}
+.ir-card{
+  position:relative;z-index:2;margin:0 var(--pad) clamp(22px,4vw,48px);
+  background:var(--milk);border-radius:var(--r-xl);padding:clamp(24px,4vw,46px);
+  max-width:680px;box-shadow:var(--shadow-l);
+}
+.ir-card h1{font-size:clamp(2.2rem,5.2vw,4.2rem)}
+
+.ir-row{
+  display:grid;gap:clamp(22px,4vw,56px);grid-template-columns:1fr;align-items:center;
+  padding-block:clamp(40px,6vw,88px);border-bottom:1px solid var(--line);
+}
+@media(min-width:900px){
+  .ir-row{grid-template-columns:1.05fr .95fr}
+  .ir-row.flip .ir-copy{order:2}
+  .ir-row.flip .ir-pic{order:1}
+}
+.ir-pic{border-radius:var(--r-xl);overflow:hidden;aspect-ratio:5/4;box-shadow:var(--shadow-l);margin:0}
+.ir-pic img{width:100%;height:100%;object-fit:cover}
+.ir-kicker{font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);margin:0 0 .7rem}
+
+.ir-breads{
+  display:grid;gap:0 36px;grid-template-columns:1fr;
+  background:var(--cream);border-radius:var(--r-xl);padding:clamp(22px,3vw,40px);
+}
+@media(min-width:720px){.ir-breads{grid-template-columns:1fr 1fr}}
+.ir-bread{
+  display:flex;justify-content:space-between;gap:1rem;align-items:baseline;
+  padding:.78rem 0;border-bottom:1px solid var(--line);font-size:.95rem;
+}
+.ir-bread:last-child{border-bottom:0}
+@media(min-width:720px){
+  .ir-breads .ir-bread:nth-last-child(2){border-bottom:0}
+}
+.ir-bread b{font-weight:700}
+.ir-bread span{font-family:var(--mono);color:var(--maroon);white-space:nowrap}
+
+.ir-events{display:grid;gap:2px;background:var(--line);border-radius:var(--r-l);overflow:hidden}
+@media(min-width:720px){.ir-events{grid-template-columns:1fr 1fr}}
+.ir-ev{background:var(--milk);padding:1.4rem 1.3rem}
+.ir-ev .n{font-family:var(--display);font-size:1.05rem;color:var(--gold-deep);margin:0 0 .35rem}
+.ir-ev h3{font-size:1.45rem;margin-bottom:.35rem}
+.ir-ev p{margin:0;font-size:.9rem;color:var(--ink-soft)}
+
+.ir-staff{
+  display:grid;gap:0;grid-template-columns:1fr;background:var(--ink);color:var(--milk);
+  border-radius:var(--r-xl);overflow:hidden;
+}
+@media(min-width:800px){.ir-staff{grid-template-columns:.7fr 1.3fr}}
+.ir-staff img{width:100%;height:100%;object-fit:cover;min-height:260px;background:#3a2430}
+.ir-staff-t{padding:clamp(26px,4vw,48px);display:flex;flex-direction:column;justify-content:center}
+.ir-staff-t h2{color:var(--milk)}
+.ir-staff-t .lede{color:rgba(255,247,238,.72)}
+.ir-staff-t .eyebrow{color:var(--gold)}
+
+/* ============================================================
+   INDIAN SWEETS DUBLIN — centered intro + mithai case
+   ============================================================ */
+.ms-intro{padding:clamp(36px,6vw,80px) 0 0;text-align:center}
+.ms-intro .sec-head{margin-inline:auto;margin-bottom:1.6rem}
+.ms-intro h1{font-size:clamp(2.3rem,5.4vw,4.4rem)}
+.ms-wide{
+  border-radius:var(--r-xl);overflow:hidden;margin-top:clamp(24px,4vw,40px);
+  aspect-ratio:16/8;box-shadow:var(--shadow-l);background:var(--cream);
+}
+.ms-wide img{width:100%;height:100%;object-fit:cover}
+
+.ms-case{
+  display:grid;gap:12px;grid-template-columns:repeat(2,1fr);grid-auto-rows:minmax(120px,auto);
+}
+@media(min-width:760px){
+  .ms-case{grid-template-columns:repeat(6,1fr);grid-auto-rows:118px}
+  .ms-span4{grid-column:span 4;grid-row:span 2}
+  .ms-span2{grid-column:span 2;grid-row:span 2}
+  .ms-span3{grid-column:span 3}
+}
+.ms-tile{
+  border-radius:var(--r-m);overflow:hidden;position:relative;
+  display:grid;place-items:center;text-align:center;padding:1rem;
+  min-height:120px;
+}
+.ms-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ms-tile.photo{padding:0}
+.ms-tile.photo span{
+  position:absolute;left:12px;bottom:12px;z-index:2;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  background:rgba(255,247,238,.92);color:var(--ink);padding:.36em .7em;border-radius:999px;
+}
+.ms-gold{background:var(--gold);color:var(--ink)}
+.ms-maroon{background:var(--maroon);color:var(--milk)}
+.ms-cream{background:var(--cream);color:var(--maroon)}
+.ms-ink{background:var(--ink);color:var(--gold)}
+.ms-tile b{position:relative;z-index:1;font-family:var(--display);font-weight:400;font-size:clamp(1.2rem,2vw,1.7rem);line-height:1.05}
+
+.ms-shop{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:640px){.ms-shop{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.ms-shop{grid-template-columns:repeat(3,1fr)}}
+.ms-box{
+  background:var(--milk);border:1px solid var(--line);border-radius:var(--r-l);padding:1.25rem 1.3rem;
+  display:flex;flex-direction:column;gap:.35rem;min-height:148px;
+}
+.ms-box em{font-family:var(--mono);font-style:normal;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep)}
+.ms-box h3{font-size:1.45rem}
+.ms-box p{margin:0;font-size:.88rem;color:var(--ink-soft);flex:1}
+.ms-box .p{font-family:var(--mono);color:var(--maroon);font-size:1rem}
+
+.ms-gift{
+  display:grid;grid-template-columns:1fr;gap:0;background:var(--maroon);color:var(--milk);
+  border-radius:var(--r-xl);overflow:hidden;
+}
+@media(min-width:860px){.ms-gift{grid-template-columns:1.15fr .85fr}}
+.ms-gift-t{padding:clamp(26px,4vw,52px)}
+.ms-gift-t h2{color:var(--milk)}
+.ms-gift-t .lede{color:rgba(255,247,238,.78)}
+.ms-gift-t .eyebrow{color:var(--gold)}
+.ms-gift img{width:100%;height:100%;object-fit:cover;min-height:280px}
+
+/* ============================================================
+   BIRTHDAY CAKES DUBLIN — invitation card + slice board
+   ============================================================ */
+.bc-hero{padding:clamp(28px,5vw,64px) 0 0}
+.bc-invite{
+  display:grid;gap:clamp(22px,4vw,48px);grid-template-columns:1fr;align-items:center;
+}
+@media(min-width:960px){.bc-invite{grid-template-columns:.92fr 1.08fr}}
+.bc-photos{position:relative;padding-bottom:clamp(24px,7vw,48px);overflow:hidden}
+.bc-tall{
+  margin:0;border-radius:var(--r-xl);overflow:hidden;
+  aspect-ratio:3/4;box-shadow:var(--shadow-l);background:var(--cream);
+}
+.bc-tall img{width:100%;height:100%;object-fit:cover}
+.bc-polaroid{
+  position:absolute;right:-4%;bottom:-8%;width:min(46%,220px);margin:0;
+  background:var(--milk);padding:10px 10px 28px;border-radius:6px;
+  box-shadow:var(--shadow-m);transform:rotate(7deg);
+}
+.bc-polaroid img{width:100%;aspect-ratio:1;object-fit:cover}
+.bc-polaroid figcaption{
+  position:absolute;left:10px;right:10px;bottom:7px;text-align:center;
+  font-family:"Parisienne",cursive;font-size:1.05rem;color:var(--maroon);
+}
+@media(max-width:959px){
+  .bc-tall{aspect-ratio:4/5;max-height:70vh}
+  .bc-polaroid{width:42%;bottom:-6%}
+}
+.bc-card{
+  background:var(--milk);border:1px solid var(--line);border-radius:var(--r-xl);
+  padding:clamp(22px,3.4vw,44px);box-shadow:var(--shadow-s);
+}
+.bc-script{
+  font-family:"Parisienne",cursive;font-size:clamp(1.8rem,3vw,2.5rem);
+  color:var(--maroon);margin:0 0 .35rem;line-height:1;
+}
+.bc-card h1{font-size:clamp(2.2rem,4.8vw,4rem)}
+.bc-metrics{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+  border-radius:var(--r-m);overflow:hidden;margin-top:1.6rem;
+}
+@media(min-width:560px){.bc-metrics{grid-template-columns:repeat(4,1fr)}}
+.bc-metrics div{background:var(--cream);padding:.95rem .7rem;text-align:center}
+.bc-metrics b{display:block;font-family:var(--display);font-size:clamp(1.15rem,2vw,1.55rem);color:var(--maroon);line-height:1.05}
+.bc-metrics span{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+
+.bc-occ{display:flex;flex-wrap:wrap;gap:10px}
+.bc-chip{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:.7em 1em;border-radius:999px;background:var(--cream);color:var(--ink);
+}
+
+.bc-slices{display:grid;gap:0;background:var(--cream);border-radius:var(--r-xl);overflow:hidden}
+@media(min-width:720px){.bc-slices{grid-template-columns:1fr 1fr}}
+.bc-slice{
+  display:grid;grid-template-columns:1fr auto;gap:.15rem 1rem;align-items:baseline;
+  padding:1rem 1.25rem;border-bottom:1px dashed var(--line);
+}
+.bc-slice:last-child{border-bottom:0}
+@media(min-width:720px){
+  .bc-slice:nth-last-child(2):nth-child(odd){border-bottom:0}
+}
+.bc-slice .n{font-weight:700}
+.bc-slice .p{font-family:var(--mono);color:var(--maroon);white-space:nowrap}
+
+.bc-tickets{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:720px){.bc-tickets{grid-template-columns:1fr 1fr}}
+.bc-ticket{
+  border-radius:var(--r-l);padding:clamp(22px,3vw,36px);min-height:200px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  position:relative;overflow:hidden;
+}
+.bc-ticket.gold{background:var(--gold);color:var(--ink)}
+.bc-ticket.maroon{background:var(--maroon);color:var(--milk)}
+.bc-ticket em{font-family:var(--mono);font-style:normal;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase}
+.bc-ticket.maroon em{color:var(--gold)}
+.bc-ticket h3{font-size:clamp(1.7rem,3vw,2.3rem);margin:.35rem 0}
+.bc-ticket .p{font-family:var(--mono);font-size:1.35rem}
+.bc-ticket p{margin:0;max-width:28ch}
+
+.bc-steps{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:800px){.bc-steps{grid-template-columns:repeat(3,1fr)}}
+.bc-step{
+  background:var(--ink);color:var(--milk);border-radius:var(--r-l);padding:1.4rem 1.3rem;
+}
+.bc-step .num{font-family:var(--display);font-size:2rem;color:var(--gold);line-height:1;margin-bottom:.5rem}
+.bc-step h3{color:var(--milk);font-size:1.35rem}
+.bc-step p{margin:0;color:rgba(255,247,238,.72);font-size:.9rem}
+
+.bc-party{
+  display:grid;grid-template-columns:1fr;gap:0;background:var(--cream);
+  border-radius:var(--r-xl);overflow:hidden;
+}
+@media(min-width:800px){.bc-party{grid-template-columns:1.1fr .9fr}}
+.bc-party-t{padding:clamp(26px,4vw,48px)}
+.bc-party img{width:100%;height:100%;object-fit:cover;min-height:240px}
+
+/* ============================================================
+   ORDER INDIAN FOOD DUBLIN — guest-check hero + three paths
+   ============================================================ */
+.od-stage{
+  position:relative;min-height:min(88vh,760px);display:flex;align-items:flex-end;
+  overflow:hidden;
+}
+.od-stage>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.od-stage::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(46,27,20,.12) 0%,rgba(46,27,20,.62) 100%);
+}
+.od-slip{
+  position:relative;z-index:2;margin:0 var(--pad) clamp(22px,4vw,48px);
+  background:var(--milk);border-radius:4px 4px var(--r-l) var(--r-l);
+  padding:clamp(22px,3.6vw,40px);max-width:560px;box-shadow:var(--shadow-l);
+  background-image:repeating-linear-gradient(transparent,transparent 27px,rgba(149,71,98,.08) 28px);
+  background-size:100% 28px;
+}
+.od-slip-top{
+  display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:1.1rem;padding-bottom:.7rem;
+  border-bottom:2px dashed var(--line);
+  background:var(--milk);
+}
+.od-slip h1,.od-slip .lede,.od-slip .hero-cta,.od-slip .crumbs,.od-slip .eyebrow{
+  background:var(--milk);
+}
+.od-slip h1{font-size:clamp(2.15rem,4.8vw,3.7rem)}
+.od-lines{margin-top:1.3rem;background:var(--milk)}
+.od-line{
+  display:grid;grid-template-columns:auto 1fr auto;gap:.6rem;align-items:baseline;
+  padding:.35rem 0;font-size:.92rem;
+}
+.od-line b{font-family:var(--mono);font-size:.68rem;color:var(--maroon)}
+.od-line span{color:var(--ink-soft)}
+.od-line em{font-style:normal;font-family:var(--mono);font-size:.72rem}
+
+.od-paths{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:860px){.od-paths{grid-template-columns:repeat(3,1fr)}}
+.od-path{
+  display:flex;flex-direction:column;background:var(--milk);border:1px solid var(--line);
+  border-radius:var(--r-l);overflow:hidden;min-height:100%;text-decoration:none;color:inherit;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+}
+.od-path:hover{transform:translateY(-4px);box-shadow:var(--shadow-m)}
+.od-path img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.od-path-t{padding:1.15rem 1.2rem 1.3rem;display:flex;flex-direction:column;gap:.35rem;flex:1}
+.od-path em{font-family:var(--mono);font-style:normal;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep)}
+.od-path h3{font-size:1.55rem}
+.od-path p{margin:0;font-size:.88rem;color:var(--ink-soft);flex:1}
+
+.od-bag{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+@media(min-width:800px){.od-bag{grid-template-columns:repeat(5,1fr)}}
+.od-item{
+  position:relative;border-radius:var(--r-m);overflow:hidden;min-height:160px;
+  display:flex;align-items:flex-end;color:var(--milk);text-decoration:none;
+}
+.od-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.od-item::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(46,27,20,.72),transparent 55%);
+}
+.od-item span{position:relative;z-index:1;padding:.85rem 1rem;font-family:var(--display);font-size:1.25rem}
+
+.od-hours-band{
+  display:grid;grid-template-columns:1fr;background:var(--ink);color:var(--milk);
+  border-radius:var(--r-xl);overflow:hidden;
+}
+@media(min-width:860px){.od-hours-band{grid-template-columns:1.05fr .95fr}}
+.od-hours-t{padding:clamp(26px,4vw,52px)}
+.od-hours-t h2{color:var(--milk)}
+.od-hours-t .lede{color:rgba(255,247,238,.75)}
+.od-hours-t .eyebrow{color:var(--gold)}
+.od-hours-band img{width:100%;height:100%;object-fit:cover;min-height:260px}
+
+/* ============================================================
+   FAMILY RESTAURANT DUBLIN — reserved card + a family Saturday
+   ============================================================ */
+.fm-hero{
+  display:grid;grid-template-columns:1fr;gap:clamp(18px,3vw,28px);
+  padding:clamp(28px,5vw,64px) var(--pad) 0;max-width:var(--maxw);margin-inline:auto;
+}
+@media(min-width:960px){.fm-hero{grid-template-columns:1.15fr .85fr;align-items:stretch}}
+.fm-pic{position:relative;border-radius:var(--r-xl);overflow:hidden;min-height:340px;box-shadow:var(--shadow-l)}
+.fm-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fm-reserved{
+  position:absolute;left:18px;bottom:18px;z-index:2;
+  background:var(--gold);color:var(--ink);border-radius:var(--r-m);padding:.85rem 1.05rem;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  box-shadow:var(--shadow-m);
+}
+.fm-reserved b{display:block;font-family:var(--display);font-size:1.45rem;letter-spacing:0;text-transform:none;font-weight:400}
+.fm-card{
+  background:var(--cream);border-radius:var(--r-xl);padding:clamp(22px,3.4vw,42px);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.fm-card h1{font-size:clamp(2.15rem,4.6vw,3.8rem)}
+
+.fm-day{display:flex;flex-direction:column;gap:0}
+.fm-slot{
+  display:grid;grid-template-columns:1fr;gap:clamp(16px,3vw,36px);align-items:center;
+  padding-block:clamp(28px,4vw,52px);border-bottom:1px solid var(--line);
+}
+@media(min-width:860px){
+  .fm-slot{grid-template-columns:.9fr 1.1fr}
+  .fm-slot:nth-child(even) .fm-slot-pic{order:2}
+  .fm-slot:nth-child(even) .fm-slot-t{order:1}
+}
+.fm-slot:last-child{border-bottom:0}
+.fm-slot-pic{margin:0;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:5/4;box-shadow:var(--shadow-m)}
+.fm-slot-pic img{width:100%;height:100%;object-fit:cover}
+.fm-time{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold-deep);margin:0 0 .45rem;
+}
+
+.fm-need{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:720px){.fm-need{grid-template-columns:1fr 1fr}}
+.fm-need article{
+  background:var(--milk);border:1px solid var(--line);border-radius:var(--r-l);
+  padding:1.25rem 1.3rem;
+}
+.fm-need h3{font-size:1.4rem;margin:.15rem 0 .35rem}
+.fm-need p{margin:0;font-size:.9rem;color:var(--ink-soft)}
+
+.fm-share{
+  display:grid;gap:0;background:var(--maroon);color:var(--milk);border-radius:var(--r-xl);overflow:hidden;
+}
+@media(min-width:800px){.fm-share{grid-template-columns:1.1fr .9fr}}
+.fm-share-t{padding:clamp(26px,4vw,48px)}
+.fm-share-t h2{color:var(--milk)}
+.fm-share-t .lede{color:rgba(255,247,238,.78)}
+.fm-share-t .eyebrow{color:var(--gold)}
+.fm-share img{width:100%;height:100%;object-fit:cover;min-height:240px}
+.fm-prices{margin:1.1rem 0 0;padding:0;list-style:none}
+.fm-prices li{
+  display:flex;justify-content:space-between;gap:1rem;padding:.45rem 0;
+  border-bottom:1px dashed rgba(255,247,238,.22);font-size:.92rem;
+}
+.fm-prices li:last-child{border-bottom:0}
+.fm-prices span{font-family:var(--mono);color:var(--gold);white-space:nowrap}
+
+/* ============================================================
+   INDIAN CATERING DUBLIN — mosaic hero + event planner
+   ============================================================ */
+.ct-hero{
+  display:grid;grid-template-columns:1fr;gap:clamp(20px,3.4vw,40px);align-items:center;
+  padding:clamp(28px,5vw,64px) var(--pad) 0;max-width:var(--maxw);margin-inline:auto;
+}
+@media(min-width:980px){.ct-hero{grid-template-columns:1.08fr .92fr}}
+.ct-mosaic{
+  display:grid;grid-template-columns:1.2fr .8fr;grid-template-rows:1fr 1fr;gap:10px;
+  min-height:min(62vh,560px);
+}
+.ct-mosaic figure{margin:0;overflow:hidden;border-radius:var(--r-l);background:var(--cream)}
+.ct-mosaic .a{grid-row:1 / -1;border-radius:var(--r-xl)}
+.ct-mosaic img{width:100%;height:100%;object-fit:cover}
+.ct-hero-copy h1{font-size:clamp(2.2rem,5vw,4rem)}
+
+.ct-events{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:760px){.ct-events{grid-template-columns:1fr 1fr}}
+.ct-ev{
+  position:relative;min-height:240px;border-radius:var(--r-l);overflow:hidden;
+  display:flex;align-items:flex-end;color:var(--milk);text-decoration:none;
+}
+.ct-ev img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ct-ev::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(46,27,20,.78),rgba(46,27,20,.12) 55%);
+}
+.ct-ev-t{position:relative;z-index:1;padding:1.3rem 1.25rem}
+.ct-ev em{font-family:var(--mono);font-style:normal;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.ct-ev h3{color:var(--milk);font-size:1.7rem;margin:.2rem 0 .25rem}
+.ct-ev p{margin:0;font-size:.88rem;color:rgba(255,247,238,.82)}
+
+.ct-live{
+  display:grid;grid-template-columns:1fr;gap:12px;
+}
+@media(min-width:860px){.ct-live{grid-template-columns:1fr 1fr}}
+.ct-live article{
+  background:var(--ink);color:var(--milk);border-radius:var(--r-l);overflow:hidden;
+  display:grid;grid-template-columns:1fr;
+}
+@media(min-width:560px){.ct-live article{grid-template-columns:.9fr 1.1fr}}
+.ct-live img{width:100%;height:100%;object-fit:cover;min-height:180px}
+.ct-live-t{padding:1.3rem 1.25rem;display:flex;flex-direction:column;justify-content:center}
+.ct-live h3{color:var(--milk);font-size:1.55rem}
+.ct-live p{margin:0;color:rgba(255,247,238,.72);font-size:.9rem}
+.ct-live .eyebrow{color:var(--gold)}
+
+.ct-desk{
+  display:grid;grid-template-columns:1fr;background:var(--cream);border-radius:var(--r-xl);overflow:hidden;
+}
+@media(min-width:920px){.ct-desk{grid-template-columns:1.08fr .92fr}}
+.ct-desk-t{padding:clamp(24px,4vw,52px)}
+.ct-desk-t h2{margin-bottom:.4rem}
+.ct-desk img{width:100%;height:100%;object-fit:cover;min-height:280px}
+
+.ct-trays{display:grid;gap:0;background:var(--cream);border-radius:var(--r-xl);overflow:hidden}
+@media(min-width:760px){.ct-trays{grid-template-columns:1fr 1fr}}
+.ct-tray{padding:1.2rem 1.35rem;border-bottom:1px dashed var(--line)}
+@media(min-width:760px){
+  .ct-tray:nth-child(odd){border-right:1px dashed var(--line)}
+  .ct-trays .ct-tray:nth-last-child(-n+2){border-bottom:0}
+}
+.ct-tray{display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
+.ct-tray b{font-weight:700}
+.ct-tray span{font-family:var(--mono);color:var(--maroon);white-space:nowrap}
