@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/chrome.css">
-<link rel="stylesheet" href="css/accessibility.css">
+<link rel="stylesheet" href="css/accessibility.css?v=2">
 
 <script type="application/ld+json">
 {
@@ -62,9 +62,7 @@
 </head>
 <body>
 
-<a class="skip" href="#main">Skip to main content</a>
-
-<!-- ============ PRELOADER ============ -->
+<!-- Homepage-only splash. Keep it outside the shared chrome markers. -->
 <div id="pre" aria-hidden="true">
   <div class="pre-glass">
     <div class="pre-steam"><i></i><i></i><i></i></div>
@@ -72,6 +70,9 @@
   </div>
   <div class="pre-txt">Brewing&nbsp;&nbsp;your&nbsp;&nbsp;tazza</div>
 </div>
+
+<!-- SITE-HEADER-START -->
+<a class="skip" href="#main">Skip to main content</a>
 
 <div id="cur"></div><div id="cur-d"></div>
 <div id="prog"></div>
@@ -122,10 +123,6 @@
       </ul>
 
       <div class="nav-cta">
-        <a class="tel-link" href="tel:+19255609830">
-          <svg viewBox="0 0 24 24" width="17" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.8.6 2.8.8a2 2 0 0 1 1.7 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          925-560-9830
-        </a>
         <a class="btn btn-ghost btn-sm btn-cater" href="https://order.boons.io/site/catering/cafe-tazza/115/y" target="_blank" rel="noopener">Catering</a>
         <a class="btn btn-primary btn-sm" href="https://order.boons.io/site/cafe-tazza/115/y" target="_blank" rel="noopener">
           Order online
@@ -168,6 +165,7 @@
     <a class="btn btn-ghost" href="tel:+19255609830">Call 925-560-9830</a>
   </div>
 </aside>
+<!-- SITE-HEADER-END -->
 
 <main id="main">
 <!-- ============ HERO ============ -->
@@ -726,6 +724,7 @@
 </section>
 </main>
 
+<!-- SITE-FOOTER-START -->
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="wrap">
@@ -812,8 +811,10 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </button>
 </div>
+<!-- SITE-FOOTER-END -->
 
-<script src="js/accessibility.js" defer></script>
-<script src="js/main.js" defer></script>
+<script src="js/chrome.js?v=3" defer></script>
+<script src="js/accessibility.js?v=2" defer></script>
+<script src="js/main.js?v=3" defer></script>
 </body>
 </html>

@@ -1,5 +1,9 @@
 (function(){
 "use strict";
+var booted=false;
+function boot(){
+if(booted)return;
+booted=true;
 var $=function(s,c){return (c||document).querySelector(s)};
 var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
 var U='https://cafetazza.com/wp-content/uploads/';
@@ -217,7 +221,7 @@ window.addEventListener('load',function(){
     var h=$('#h1'); if(h) h.classList.add('in');
   }, RM?0:1500);
 });
-document.body.classList.add('locked');
+if($('#pre')) document.body.classList.add('locked');
 setTimeout(function(){
   var p=$('#pre'); if(p&&!p.classList.contains('done')){p.classList.add('done');document.body.classList.remove('locked')}
   var h=$('#h1'); if(h) h.classList.add('in');
@@ -853,4 +857,11 @@ document.addEventListener('keydown',function(e){
   }
 });
 setTimeout(watch,600);
+}
+window.cafeBoot=boot;
+if(document.getElementById("header")) boot();
+else{
+  window.addEventListener("cafe:chrome-ready", boot);
+  if(window.__cafeChromeReady) boot();
+}
 })();

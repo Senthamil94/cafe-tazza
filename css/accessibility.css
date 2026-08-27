@@ -5,19 +5,25 @@
    ============================================================ */
 
 .a11y-widget-root {
-  position: fixed;
-  bottom: 30px;
-  left: 20px;
-  z-index: 10060;
+  position: fixed !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: 30px !important;
+  left: 20px !important;
+  z-index: 2147483000;
   font-family: Arial, Verdana, sans-serif;
   pointer-events: none;
   overflow: visible;
   width: auto;
   height: auto;
+  margin: 0;
+  transform: none !important;
+  filter: none !important;
 }
 
 .a11y-widget-trigger {
   pointer-events: auto;
+  position: relative;
   width: 52px;
   height: 52px;
   border-radius: 8px;
@@ -30,7 +36,6 @@
   align-items: center;
   justify-content: center;
   transition: background 0.2s, transform 0.2s;
-  position: relative;
   z-index: 3;
 }
 
@@ -398,15 +403,15 @@ html.a11y-dark-mode .a11y-widget-action svg {
 /* Sit above Cafe Tazza’s mobile action dock */
 @media (max-width: 860px) {
   .a11y-widget-root {
-    bottom: 98px;
-    left: 14px;
+    bottom: 98px !important;
+    left: 14px !important;
   }
 }
 
 @media (max-width: 480px) {
   .a11y-widget-root {
-    bottom: 98px;
-    left: 16px;
+    bottom: 98px !important;
+    left: 16px !important;
   }
 
   .a11y-widget-trigger {

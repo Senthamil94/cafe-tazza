@@ -56,8 +56,8 @@
   function buildFilter() {
     var parts = [];
     if (state.grayscale) parts.push('grayscale(100%)');
-    parts.push('saturate(' + state.saturation + '%)');
-    parts.push('brightness(' + state.brightness + '%)');
+    if (state.saturation !== 100) parts.push('saturate(' + state.saturation + '%)');
+    if (state.brightness !== 100) parts.push('brightness(' + state.brightness + '%)');
     return parts.join(' ');
   }
 
@@ -68,8 +68,9 @@
     root.classList.toggle('a11y-text-scaled', state.textScale !== 100);
     root.dataset.a11yTextScale = state.textScale;
 
-    /* Apply visual filters to body so widget UI stays crisp */
-    document.body.style.filter = buildFilter();
+    /* Filter the page only when a tool is on. Identity filters still
+       create a containing block and pin position:fixed to the page bottom. */
+    document.body.style.filter = buildFilter() || '';
 
     toggleClass('a11y-high-contrast', state.highContrast);
     toggleClass('a11y-dark-mode', state.darkMode);
@@ -172,7 +173,7 @@
         '<i class="fas fa-wheelchair" aria-hidden="true"></i>' +
       '</button>';
 
-    document.body.appendChild(container);
+    document.documentElement.appendChild(container);
     widgetRoot = container;
 
     panel = document.getElementById('a11yPanel');
