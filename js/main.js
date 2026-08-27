@@ -6,7 +6,7 @@ if(booted)return;
 booted=true;
 var $=function(s,c){return (c||document).querySelector(s)};
 var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
-var U='https://cafetazza.com/wp-content/uploads/';
+var U='images/';
 var ORDER='https://order.boons.io/site/cafe-tazza/115/y';
 var CATER='https://order.boons.io/site/catering/cafe-tazza/115/y';
 var RM=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -15,14 +15,14 @@ var RM=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
    1. DATA
    ============================================================ */
 var THALI=[
- {t:'Eggless cakes',s:'Baked this morning',img:U+'2025/12/X1A6251-scaled.jpg',url:'indian-bakery-eggless-cakes-dublin.html'},
- {t:'Birthday cakes',s:'Custom &amp; same-day',img:U+'2026/06/birthday-custom-cakes.jpg',url:'birthday-cakes-dublin.html'},
- {t:'Chaat &amp; street food',s:'Made to order',img:U+'2025/12/image-19.jpg',url:'indian-chaat-dublin.html'},
- {t:'Dosa &amp; idli',s:'South Indian',img:U+'2025/12/X1A6135-scaled-e1766937468254.jpg',url:'south-indian-restaurant-dublin.html'},
- {t:'Curries &amp; naan',s:'North Indian',img:U+'2025/12/X1A6244-scaled-e1766250596483.jpg',url:'indian-restaurant-dublin-ca.html#north'},
- {t:'Sweets &amp; mithai',s:'Festival &amp; gifting',img:U+'2025/12/X1A6299-scaled.jpg',url:'indian-sweets-dublin.html'},
- {t:'Catering',s:'Parties &amp; events',img:U+'2025/12/X1A6084-scaled.jpg',url:'indian-catering-dublin.html'},
- {t:'Delivery',s:'To your door',img:U+'2026/06/indian-food-delivery-dublin.jpg',url:'order-indian-food-dublin.html'}
+ {t:'Eggless cakes',s:'Baked this morning',img:U+'X1A6251-scaled.jpg',url:'indian-bakery-eggless-cakes-dublin.html'},
+ {t:'Birthday cakes',s:'Custom &amp; same-day',img:U+'birthday-custom-cakes.jpg',url:'birthday-cakes-dublin.html'},
+ {t:'Chaat &amp; street food',s:'Made to order',img:U+'image-19.jpg',url:'indian-chaat-dublin.html'},
+ {t:'Dosa &amp; idli',s:'South Indian',img:U+'X1A6135-scaled-e1766937468254.jpg',url:'south-indian-restaurant-dublin.html'},
+ {t:'Curries &amp; naan',s:'North Indian',img:U+'X1A6244-scaled-e1766250596483.jpg',url:'indian-restaurant-dublin-ca.html#north'},
+ {t:'Sweets &amp; mithai',s:'Festival &amp; gifting',img:U+'X1A6299-scaled.jpg',url:'indian-sweets-dublin.html'},
+ {t:'Catering',s:'Parties &amp; events',img:U+'X1A6084-scaled.jpg',url:'indian-catering-dublin.html'},
+ {t:'Delivery',s:'To your door',img:U+'indian-food-delivery-dublin.jpg',url:'order-indian-food-dublin.html'}
 ];
 
 var CATS=[
@@ -38,10 +38,10 @@ var CATS=[
 /* n=name d=description p=price v=veg i=image */
 var M=[
  /* ---- SOUTH INDIAN ---- */
- {c:'south',n:'Ghee Roast Dosa',d:'Homemade batter made into a thin paper dosa cooked in ghee',p:10.99,v:1,i:U+'2025/12/image-1-e1766937428406.png'},
- {c:'south',n:'Plain Dosa',d:'Thin crepe made from fermented lentils and rice',p:10.99,v:1,i:U+'2025/12/X1A6149-scaled.jpg'},
- {c:'south',n:'Masala Dosa',d:'Rice batter crepe layered with creamy potato stuffing',p:11.99,v:1,i:U+'2025/12/X1A6135-scaled-e1766937468254.jpg'},
- {c:'south',n:'Onion Dosa',d:'Rice batter crepe layered with onions',p:11.99,v:1,i:U+'2025/12/X1A6095-scaled-e1766937586384.jpg'},
+ {c:'south',n:'Ghee Roast Dosa',d:'Homemade batter made into a thin paper dosa cooked in ghee',p:10.99,v:1,i:U+'image-1-e1766937428406.png'},
+ {c:'south',n:'Plain Dosa',d:'Thin crepe made from fermented lentils and rice',p:10.99,v:1,i:U+'X1A6149-scaled.jpg'},
+ {c:'south',n:'Masala Dosa',d:'Rice batter crepe layered with creamy potato stuffing',p:11.99,v:1,i:U+'X1A6135-scaled-e1766937468254.jpg'},
+ {c:'south',n:'Onion Dosa',d:'Rice batter crepe layered with onions',p:11.99,v:1,i:U+'X1A6095-scaled-e1766937586384.jpg'},
  {c:'south',n:'Mysore Masala Dosa',d:'Rice batter crepe with spicy sauce and creamy potato stuffing',p:11.99,v:1},
  {c:'south',n:'Paneer Dosa',d:'Rice batter crepe with spiced and flavoured paneer',p:13.99,v:1},
  {c:'south',n:'Cheese Dosa',d:'A cheesy rice batter crepe stuffed with cheese',p:12.99,v:1},
@@ -51,11 +51,11 @@ var M=[
  {c:'south',n:'Onion Rava Masala Dosa',d:'Crispy semolina crepe with onions and potato stuffing',p:13.99,v:1},
  {c:'south',n:'Vegetable Spring Dosa',d:'Rice batter crepe with mixed vegetables',p:12.99,v:1},
  {c:'south',n:'Onion Masala Dosa',d:'Rice batter crepe with onions and potato stuffing',p:13.99,v:1},
- {c:'south',n:'Kids Cone Dosa',d:'A dosa rolled into a cone — the one children ask for by name',p:9.99,v:1,i:U+'2025/12/X1A6095-scaled-e1766937586384.jpg'},
+ {c:'south',n:'Kids Cone Dosa',d:'A dosa rolled into a cone — the one children ask for by name',p:9.99,v:1,i:U+'X1A6095-scaled-e1766937586384.jpg'},
  {c:'south',n:'Egg Dosa',d:'Rice batter crepe layered with eggs',p:13.99,v:0},
  {c:'south',n:'Chicken Keema Dosa',d:'Rice batter crepe layered with minced chicken, onions and chillies',p:13.99,v:0},
  {c:'south',n:'Lamb Keema Dosa',d:'Rice batter crepe stuffed with minced lamb',p:13.99,v:0},
- {c:'south',n:'Steamed Idli',d:'Soft steamed rice cakes with sambar and chutney',p:8.99,v:1,i:U+'2025/12/X1A6183-scaled.jpg'},
+ {c:'south',n:'Steamed Idli',d:'Soft steamed rice cakes with sambar and chutney',p:8.99,v:1,i:U+'X1A6183-scaled.jpg'},
  {c:'south',n:'Butter Toasted Idli',d:'Idli toasted in butter until golden at the edges',p:9.99,v:1},
  {c:'south',n:'Masala Coconut Idli',d:'Idli tossed with coconut and south Indian spices',p:9.99,v:1},
  {c:'south',n:'Medhu Vada',d:'Crisp lentil doughnuts, fluffy inside',p:8.99,v:1},
@@ -64,28 +64,28 @@ var M=[
  {c:'south',n:'Vegetable Uttapam',d:'Thick pancake loaded with mixed vegetables',p:12.99,v:1},
 
  /* ---- CHAAT & STREET FOOD ---- */
- {c:'chaat',n:'Pani Poori',d:'8 crispy puffed wafers with spicy mint water, chutneys, potatoes and chickpeas',p:9.99,v:1,i:U+'2025/12/X1A6208-scaled-e1766928622864.jpg'},
+ {c:'chaat',n:'Pani Poori',d:'8 crispy puffed wafers with spicy mint water, chutneys, potatoes and chickpeas',p:9.99,v:1,i:U+'X1A6208-scaled-e1766928622864.jpg'},
  {c:'chaat',n:'Samosa Chaat (2 Pcs)',d:'2 samosas served with garbanzo curry, chutney, onion and yogurt',p:9.99,v:1},
- {c:'chaat',n:'Papdi Chaat',d:'Chickpeas, seasoned yogurt and chutneys over crisp chips',p:9.99,v:1,i:U+'2025/12/image-1-e1766929097426.jpg'},
- {c:'chaat',n:'Dahi Sev Poori',d:'Puffed chips with chickpeas, potatoes, sweet yogurt and chutneys',p:9.99,v:1,i:U+'2025/12/image-5.jpg'},
- {c:'chaat',n:'Dahi Bhalla Chaat',d:'Fried urad dal dumplings soaked in yogurt and chutneys',p:9.99,v:1,i:U+'2025/12/image-3.jpg'},
- {c:'chaat',n:'Bhel Poori',d:'Puffed rice, onion and potato tossed with tamarind and mint chutney',p:9.99,v:1,i:U+'2025/12/image-4.jpg'},
- {c:'chaat',n:'Aloo Tikki Chole',d:'Potato patties with chickpea curry, sweet yogurt and chutneys',p:9.99,v:1,i:U+'2025/12/image-6.jpg'},
- {c:'chaat',n:'Papdi Bhalla Chaat',d:'Urad dal dumplings with papdi, soaked in yogurt and chutney',p:9.99,v:1,i:U+'2025/12/image-7.jpg'},
- {c:'chaat',n:'Dhokla Chaat',d:'Dhokla pieces garnished with chutneys and yogurt',p:9.99,v:1,i:U+'2025/12/image-8.jpg'},
+ {c:'chaat',n:'Papdi Chaat',d:'Chickpeas, seasoned yogurt and chutneys over crisp chips',p:9.99,v:1,i:U+'image-1-e1766929097426.jpg'},
+ {c:'chaat',n:'Dahi Sev Poori',d:'Puffed chips with chickpeas, potatoes, sweet yogurt and chutneys',p:9.99,v:1,i:U+'image-5.jpg'},
+ {c:'chaat',n:'Dahi Bhalla Chaat',d:'Fried urad dal dumplings soaked in yogurt and chutneys',p:9.99,v:1,i:U+'image-3.jpg'},
+ {c:'chaat',n:'Bhel Poori',d:'Puffed rice, onion and potato tossed with tamarind and mint chutney',p:9.99,v:1,i:U+'image-4.jpg'},
+ {c:'chaat',n:'Aloo Tikki Chole',d:'Potato patties with chickpea curry, sweet yogurt and chutneys',p:9.99,v:1,i:U+'image-6.jpg'},
+ {c:'chaat',n:'Papdi Bhalla Chaat',d:'Urad dal dumplings with papdi, soaked in yogurt and chutney',p:9.99,v:1,i:U+'image-7.jpg'},
+ {c:'chaat',n:'Dhokla Chaat',d:'Dhokla pieces garnished with chutneys and yogurt',p:9.99,v:1,i:U+'image-8.jpg'},
  {c:'chaat',n:'Kachori Chaat',d:'Crushed kachori topped with curry, yogurt and chutneys',p:9.99,v:1},
  {c:'chaat',n:'Dhokla',d:'Steamed, gently sweet-and-sour chickpea flour squares',p:11.99,v:1},
- {c:'chaat',n:'Chole Bhature',d:'Chickpea curry with pillowy fried flatbread',p:14.99,v:1,i:U+'2025/12/image-9.jpg'},
- {c:'chaat',n:'Poori Chole',d:'2 pieces of fried flatbread with spiced, curried chickpeas',p:13.99,v:1,i:U+'2025/12/image-10-e1766931175626.jpg'},
- {c:'chaat',n:'Aloo Poori',d:'2 pieces of fried flatbread with spiced potato curry',p:13.99,v:1,i:U+'2025/12/image-11.jpg'},
- {c:'chaat',n:'Bombay Vada Pav (2 Pcs)',d:'Seasoned potato patties sandwiched in pav bread',p:12.99,v:1,i:U+'2025/12/image-12.jpg'},
- {c:'chaat',n:'Pav Bhaaji',d:'Spicy blend of vegetables in tomato gravy with buttered pav',p:12.99,v:1,i:U+'2025/12/image-13.jpg'},
+ {c:'chaat',n:'Chole Bhature',d:'Chickpea curry with pillowy fried flatbread',p:14.99,v:1,i:U+'image-9.jpg'},
+ {c:'chaat',n:'Poori Chole',d:'2 pieces of fried flatbread with spiced, curried chickpeas',p:13.99,v:1,i:U+'image-10-e1766931175626.jpg'},
+ {c:'chaat',n:'Aloo Poori',d:'2 pieces of fried flatbread with spiced potato curry',p:13.99,v:1,i:U+'image-11.jpg'},
+ {c:'chaat',n:'Bombay Vada Pav (2 Pcs)',d:'Seasoned potato patties sandwiched in pav bread',p:12.99,v:1,i:U+'image-12.jpg'},
+ {c:'chaat',n:'Pav Bhaaji',d:'Spicy blend of vegetables in tomato gravy with buttered pav',p:12.99,v:1,i:U+'image-13.jpg'},
  {c:'chaat',n:'Paneer Bhurji Pav',d:'Scrambled cottage cheese with onion, tomatoes and spices',p:12.99,v:1},
- {c:'chaat',n:'Kutchi Dabeli',d:'Pav stuffed with sweet-spicy potato, onion, pomegranate, lehsun chutney and sev',p:11.99,v:1,i:U+'2025/12/image-18.jpg'},
- {c:'chaat',n:'Masala Grilled Fish',d:'Spiced marinated fish cooked on the grill',p:14.99,v:0,i:U+'2025/12/image-14.jpg'},
+ {c:'chaat',n:'Kutchi Dabeli',d:'Pav stuffed with sweet-spicy potato, onion, pomegranate, lehsun chutney and sev',p:11.99,v:1,i:U+'image-18.jpg'},
+ {c:'chaat',n:'Masala Grilled Fish',d:'Spiced marinated fish cooked on the grill',p:14.99,v:0,i:U+'image-14.jpg'},
  {c:'chaat',n:'Lamb Keema Pav',d:'Minced spiced lamb served with 2 pav',p:13.99,v:0},
  {c:'chaat',n:'Chicken Keema Pav',d:'Minced spiced chicken served with 2 pav',p:12.99,v:0},
- {c:'chaat',n:'Fish Pakora',d:'Slices of fish marinated with spices and fried',p:13.99,v:0,i:U+'2025/12/image-17.jpg'},
+ {c:'chaat',n:'Fish Pakora',d:'Slices of fish marinated with spices and fried',p:13.99,v:0,i:U+'image-17.jpg'},
  {c:'chaat',n:'Chicken Pakora',d:'Tender chicken marinated with spices and fried',p:12.99,v:0},
  {c:'chaat',n:'Momos Non Veg',d:'6 steamed dumplings with spiced filling',p:15.99,v:0},
 
@@ -138,7 +138,7 @@ var M=[
  {c:'bread',n:'Steamed White Rice',d:'Basmati rice steamed to perfection',p:3.99,v:1},
 
  /* ---- BAKERY & CAKES ---- */
- {c:'bake',n:'Black Forest Pastry',d:'Eggless. Cherry, cream and chocolate sponge',p:4.99,v:1,i:U+'2025/12/X1A6251-scaled.jpg'},
+ {c:'bake',n:'Black Forest Pastry',d:'Eggless. Cherry, cream and chocolate sponge',p:4.99,v:1,i:U+'X1A6251-scaled.jpg'},
  {c:'bake',n:'Butterscotch Pastry',d:'Eggless. Caramel crunch and cream',p:4.99,v:1},
  {c:'bake',n:'Chocolate Pastry',d:'Eggless. Deep chocolate sponge and ganache',p:4.99,v:1},
  {c:'bake',n:'Choco Mousse Pastry',d:'Eggless. Light-set chocolate mousse',p:4.99,v:1},
@@ -149,12 +149,12 @@ var M=[
  {c:'bake',n:'Pistachio Pastry',d:'Eggless. Pistachio cream and sponge',p:4.99,v:1},
  {c:'bake',n:'Strawberry Pastry',d:'Eggless. Strawberry cream and sponge',p:4.99,v:1},
  {c:'bake',n:'Cream Bun',d:'Soft bun filled with sweet cream',p:3.99,v:1},
- {c:'bake',n:'Cake 2 lb',d:'Eggless celebration cake in your choice of flavour',p:39.99,v:1,i:U+'2026/06/birthday-custom-cakes.jpg'},
+ {c:'bake',n:'Cake 2 lb',d:'Eggless celebration cake in your choice of flavour',p:39.99,v:1,i:U+'birthday-custom-cakes.jpg'},
  {c:'bake',n:'Special Cake 2 lb',d:'Eggless cake with a premium flavour and finish',p:49.99,v:1},
 
  /* ---- SWEETS & MITHAI ---- */
- {c:'sweet',n:'Jalebi Box',d:'Hot, coiled and syrup-soaked',p:11.99,v:1,i:U+'2025/12/X1A6294-scaled.jpg'},
- {c:'sweet',n:'Motichoor Laddoo (1.5 lb)',d:'Fine pearl-gram laddoo, made in house',p:14.99,v:1,i:U+'2025/12/X1A6299-scaled.jpg'},
+ {c:'sweet',n:'Jalebi Box',d:'Hot, coiled and syrup-soaked',p:11.99,v:1,i:U+'X1A6294-scaled.jpg'},
+ {c:'sweet',n:'Motichoor Laddoo (1.5 lb)',d:'Fine pearl-gram laddoo, made in house',p:14.99,v:1,i:U+'X1A6299-scaled.jpg'},
  {c:'sweet',n:'Dry Fruits Box',d:'Assorted dry fruit sweets — good for gifting',p:21.99,v:1},
  {c:'sweet',n:'Cashew',d:'Kaju sweets by weight',p:9.99,v:1},
  {c:'sweet',n:'Mixed Namkeen',d:'Savoury mix for the tea tray',p:6.99,v:1},
@@ -162,22 +162,22 @@ var M=[
 ];
 
 var GAL=[
- {i:U+'2025/12/X1A6251-scaled.jpg',c:'Bakery case'},
- {i:U+'2025/12/image-19.jpg',c:'Pani poori'},
- {i:U+'2025/12/X1A6135-scaled-e1766937468254.jpg',c:'Masala dosa'},
- {i:U+'2025/12/X1A6299-scaled.jpg',c:'Mithai counter'},
- {i:U+'2025/12/X1A6046-1-scaled.jpg',c:'The dining room'},
- {i:U+'2025/12/X1A6084-scaled.jpg',c:'Catering spread'},
- {i:U+'2025/12/image-9.jpg',c:'Chole bhature'},
- {i:U+'2025/12/X1A6183-scaled.jpg',c:'Steamed idli'},
- {i:U+'2026/06/birthday-custom-cakes.jpg',c:'Custom cakes'},
- {i:U+'2025/12/X1A6294-scaled.jpg',c:'Fresh jalebi'},
- {i:U+'2025/12/image-13.jpg',c:'Pav bhaaji'},
- {i:U+'2025/12/X1A6142-scaled.jpg',c:'Front counter'},
- {i:U+'2025/12/X1A6244-scaled-e1766250596483.jpg',c:'North Indian plate'},
- {i:U+'2025/12/image-4.jpg',c:'Bhel poori'},
- {i:U+'2026/06/indian-food-delivery-dublin.jpg',c:'Boxed for delivery'},
- {i:U+'2025/12/image-18.jpg',c:'Kutchi dabeli'}
+ {i:U+'X1A6251-scaled.jpg',c:'Bakery case'},
+ {i:U+'image-19.jpg',c:'Pani poori'},
+ {i:U+'X1A6135-scaled-e1766937468254.jpg',c:'Masala dosa'},
+ {i:U+'X1A6299-scaled.jpg',c:'Mithai counter'},
+ {i:U+'X1A6046-1-scaled.jpg',c:'The dining room'},
+ {i:U+'X1A6084-scaled.jpg',c:'Catering spread'},
+ {i:U+'image-9.jpg',c:'Chole bhature'},
+ {i:U+'X1A6183-scaled.jpg',c:'Steamed idli'},
+ {i:U+'birthday-custom-cakes.jpg',c:'Custom cakes'},
+ {i:U+'X1A6294-scaled.jpg',c:'Fresh jalebi'},
+ {i:U+'image-13.jpg',c:'Pav bhaaji'},
+ {i:U+'X1A6142-scaled.jpg',c:'Front counter'},
+ {i:U+'X1A6244-scaled-e1766250596483.jpg',c:'North Indian plate'},
+ {i:U+'image-4.jpg',c:'Bhel poori'},
+ {i:U+'indian-food-delivery-dublin.jpg',c:'Boxed for delivery'},
+ {i:U+'image-18.jpg',c:'Kutchi dabeli'}
 ];
 
 var SPOT=[
@@ -363,7 +363,7 @@ if('IntersectionObserver' in window && spySecs.length){
   THALI.forEach(function(c,i){
     var a=document.createElement('a');
     a.className='katori'; a.href=c.url; a.setAttribute('aria-label',c.t.replace(/&amp;/g,'&'));
-    a.innerHTML='<img src="'+c.img+'" alt="'+c.t.replace(/&amp;/g,'and')+'" loading="lazy">';
+    a.innerHTML='<img src="'+c.img+'" alt="'+c.t.replace(/&amp;/g,'and')+'" loading="lazy" referrerpolicy="no-referrer">';
     var ang=i*step, rad=(ang-90)*Math.PI/180, R=154;
     a.style.transform='translate('+(Math.cos(rad)*R)+'%,'+(Math.sin(rad)*R)+'%)';
     a.dataset.i=i;
@@ -566,7 +566,7 @@ var state={cat:'all',q:'',diet:null,sort:null};
     }
     grid.innerHTML=out.map(function(m,i){
       var th=m.i
-        ? '<img src="'+m.i+'" alt="'+m.n+'" loading="lazy">'
+        ? '<img src="'+m.i+'" alt="'+m.n+'" loading="lazy" referrerpolicy="no-referrer">'
         : '<span class="ini">'+m.n.charAt(0)+'</span>';
       return '<a class="mi" href="'+ORDER+'" target="_blank" rel="noopener" style="animation-delay:'+Math.min(i*22,420)+'ms">'+
         '<div class="mi-th">'+th+'<span class="mi-tags"><span class="veg-mark'+(m.v?'':' non')+'" title="'+(m.v?'Vegetarian':'Non-vegetarian')+'"></span></span></div>'+
@@ -702,7 +702,7 @@ $$('[data-jump]').forEach(function(a){
 (function(){
   var gal=$('#gal'); if(!gal) return;
   gal.innerHTML=GAL.map(function(g,i){
-    return '<figure data-i="'+i+'"><img src="'+g.i+'" alt="'+g.c+' at Cafe Tazza Dublin CA" loading="lazy"><figcaption>'+g.c+'</figcaption></figure>';
+    return '<figure data-i="'+i+'"><img src="'+g.i+'" alt="'+g.c+' at Cafe Tazza Dublin CA" loading="lazy" referrerpolicy="no-referrer"><figcaption>'+g.c+'</figcaption></figure>';
   }).join('');
   var lb=$('#lb'),img=$('#lbI'),cap=$('#lbC'),cur=0;
   if(!lb||!img) return;
